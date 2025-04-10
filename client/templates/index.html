@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quran API Flask App</title>
+</head>
+<body>
+    <h1>Quran Surah Finder</h1>
+    <form method="POST" action="/surah">
+        <label for="surah_number">Masukkan Nomor Surah:</label>
+        <input type="number" id="surah_number" name="surah_number" required>
+        <button type="submit">Cari Surah</button>
+    </form>
+
+    {% if surah %}
+        <h2>Surah: {{ surah.name }}</h2>
+        <p>{{ surah.englishName }}</p>
+        <p>{{ surah.revelationType }}</p>
+        <h3>Ayat:</h3>
+        <ul>
+            {% for ayah in surah.ayahs %}
+                <li>{{ ayah.numberInSurah }}: {{ ayah.text }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
